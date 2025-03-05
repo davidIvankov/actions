@@ -30,8 +30,8 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.14.0'
-          cache: 'npm'
+          node-version: "20.14.0"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -42,14 +42,17 @@ jobs:
       - name: Type check client
         run: npm run typecheck -w=client
 
-      # TODO: Lint client code and server code.
+      - name: Lint client code
+        run: npm run lint -w=client
 
-      # TODO: Run client unit tests. We will run E2E tests separately later.
+      - name: Client unit tests
+        run: npm run test:unit -w=client
 
-      # TODO: Run server database migrations.
+      - name: Server database migrations
+        run: npm run migrate:latest -w=server
 
-      # TODO: Run server tests.
-
+      - name: Server tests
+        run: npm run test -w=server
       # Add more browsers here if you want to test on more/different browsers
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
