@@ -21,8 +21,7 @@ const hasSucceeded = ref(false)
 const errorMessage = ref('')
 async function submitSignup() {
   try {
-    const response = await signup(userForm.value)
-    console.log(response)
+    await signup(userForm.value)
 
     // clear error
     errorMessage.value = ''
